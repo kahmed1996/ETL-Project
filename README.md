@@ -5,3 +5,4 @@ We are attempting to combine Census demogaphic data with Cuyahoga county precinc
 https://github.com/mggg/ohio-precincts
 
 In case that is not workable we will endeavor to get data on which blocks are in which precincts from the County. If that does not work we will use city-level data for the suburbs.
+The github pages can be accessed at https://kahmed1996.github.io/ETL-Project/
