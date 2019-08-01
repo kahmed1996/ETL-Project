@@ -1,1 +1,6 @@
 *.cvs filter=lfs diff=lfs merge=lfs -text
+census_data.csv filter=lfs diff=lfs merge=lfs -text
+CuyahogaPrecinctsOnly.csv filter=lfs diff=lfs merge=lfs -text
+listofcities.csv filter=lfs diff=lfs merge=lfs -text
+Resources/Voter[[:space:]]Turnout.csv filter=lfs diff=lfs merge=lfs -text
+Resources/Elections.csv filter=lfs diff=lfs merge=lfs -text
