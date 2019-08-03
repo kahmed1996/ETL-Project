@@ -9,6 +9,22 @@ body {
 
 ,container {background-color:  beige;
 }
+
+/* Footer */
+footer{
+    background-color: #666666; 
+    color: black; 
+    min-height: 65px; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px; 
+    text-align: center; 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 25px; 
+    }
+
 /* Navbar */
 .navbar{
   max-height: 100px; 
@@ -63,6 +79,7 @@ img{
 .vizualization{
   width:50% !important;
   height:50% !important;
+  padding: 10px 30px 15px;
 }
 
 /* Title Class  */
@@ -85,7 +102,7 @@ font-size: 17px;
   padding: 10px 20px 15px; 
   color:black;
   font-weight: bold;
-  background-color: white; 
+  background-color: bisque; 
   
 }
 /* Table */
