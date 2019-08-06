@@ -20,3 +20,60 @@ JOIN CENSUS_TO_CITY CC ON V.CITY = CC.CITY
 JOIN CENSUS_GENDER CG ON CC.CENSUSTRACT = CG.CENSUSTRACT
 JOIN CENSUS_ETHNICITY CE ON CC.CENSUSTRACT = CE.CENSUSTRACT
 GROUP BY V.CITY, PARTY, ELECTION;
+
+
+CREATE VIEW poverty_levels AS
+SELECT  V.CITY, PARTY, ELECTION, sum(case when VOTED = 'Y' Then 1 end) Voted_CNT,
+	sum(case when VOTED = 'N' Then 1 end) NOT_Voted_CNT,
+	sum(distinct CG.TOTAL_POPULATION) TOTAL_POPULATION, ci.Under_Poverty_Level_Percentage--,
+	--MEN, WOMEN, 
+	--HISPANIC, WHITE, BLACK, NATIVE, ASIAN,PACIFIC
+	FROM ELECTIONS E
+	JOIN (SELECT * FROM VOTERS ) V  ON E.VOTER_ID_ORG = V.VOTER_ID_ORG 
+	JOIN CENSUS_TO_CITY CC ON V.CITY = CC.CITY
+	JOIN CENSUS_GENDER CG ON CC.censustract = CG.CENSUSTRACT
+	JOIN CENSUS_ETHNICITY CE ON CC.censustract = CE.CENSUSTRACT
+	join census_income ci on CC.censustract=ci.censustract
+	GROUP BY V.CITY, PARTY, ELECTION, ci.Under_Poverty_Level_Percentage;
+
+CREATE VIEW per_capita_income AS
+SELECT  V.CITY, PARTY, ELECTION, sum(case when VOTED = 'Y' Then 1 end) Voted_CNT,
+	sum(case when VOTED = 'N' Then 1 end) NOT_Voted_CNT,
+	sum(distinct CG.TOTAL_POPULATION) TOTAL_POPULATION, ci.Income_Per_Capita--,
+	--MEN, WOMEN, 
+	--HISPANIC, WHITE, BLACK, NATIVE, ASIAN,PACIFIC
+	FROM ELECTIONS E
+	JOIN (SELECT * FROM VOTERS ) V  ON E.VOTER_ID_ORG = V.VOTER_ID_ORG 
+	JOIN CENSUS_TO_CITY CC ON V.CITY = CC.CITY
+	JOIN CENSUS_GENDER CG ON CC.censustract = CG.CENSUSTRACT
+	JOIN CENSUS_ETHNICITY CE ON CC.censustract = CE.CENSUSTRACT
+	join census_income ci on CC.censustract=ci.censustract
+	GROUP BY V.CITY, PARTY, ELECTION, ci.Income_Per_Capita;
+
+CREATE VIEW Med_household_income AS
+SELECT  V.CITY, PARTY, ELECTION, sum(case when VOTED = 'Y' Then 1 end) Voted_CNT,
+	sum(case when VOTED = 'N' Then 1 end) NOT_Voted_CNT,
+	sum(distinct CG.TOTAL_POPULATION) TOTAL_POPULATION, ci.Median_Household_Income--,
+	--MEN, WOMEN, 
+	--HISPANIC, WHITE, BLACK, NATIVE, ASIAN,PACIFIC
+	FROM ELECTIONS E
+	JOIN (SELECT * FROM VOTERS ) V  ON E.VOTER_ID_ORG = V.VOTER_ID_ORG 
+	JOIN CENSUS_TO_CITY CC ON V.CITY = CC.CITY
+	JOIN CENSUS_GENDER CG ON CC.censustract = CG.CENSUSTRACT
+	JOIN CENSUS_ETHNICITY CE ON CC.censustract = CE.CENSUSTRACT
+	join census_income ci on CC.censustract=ci.censustract
+	GROUP BY V.CITY, PARTY, ELECTION, ci.Median_Household_Income;
+
+CREATE VIEW race AS
+SELECT  V.CITY, PARTY, ELECTION, sum(case when VOTED = 'Y' Then 1 end) Voted_CNT,
+	sum(case when VOTED = 'N' Then 1 end) NOT_Voted_CNT,
+	sum(distinct CG.TOTAL_POPULATION) TOTAL_POPULATION, ce.black,ce.white,ce.hispanic--,
+	--MEN, WOMEN, 
+	--HISPANIC, WHITE, BLACK, NATIVE, ASIAN,PACIFIC
+	FROM ELECTIONS E
+	JOIN (SELECT * FROM VOTERS ) V  ON E.VOTER_ID_ORG = V.VOTER_ID_ORG 
+	JOIN CENSUS_TO_CITY CC ON V.CITY = CC.CITY
+	JOIN CENSUS_GENDER CG ON CC.censustract = CG.CENSUSTRACT
+	JOIN CENSUS_ETHNICITY CE ON CC.censustract = CE.CENSUSTRACT
+	join census_income ci on CC.censustract=ci.censustract
+	GROUP BY V.CITY, PARTY, ELECTION, ce.black, black, hispanic;
