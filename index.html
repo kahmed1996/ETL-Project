@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cuyahoga Voter Turn-out vs Census Demographics</title>
+  <title>Voter Turnout vs Census</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
@@ -35,10 +35,10 @@
               Extract
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="extract.html">Instructions</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+              <a class="dropdown-item" href="extract.html">Overview</a>
+              <a class="dropdown-item" href="Resources/acs_2015_census_tract_data.csv" download>Raw Census Data</a>
+              <a class="dropdown-item" href="Resources/Voter Turnout.csv" download>Raw Voter Data</a>
+              <a class="dropdown-item" href="Resources/assets/images/county_block.jpg" download>Raw city-block</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -47,10 +47,10 @@
                   Transform
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="Transform.html">Instructions</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                  <a class="dropdown-item" href="Transform.html">Overview</a>
+                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Clean Voter Data</a>
+                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Voter/Election Files</a>
+                  <a class="dropdown-item" href="Resources/censusdata_final.html" target= "blank">Census Files</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -59,10 +59,19 @@
                       Load
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="Load.html">Instructions</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                      <a class="dropdown-item" href="Load.html">Overview</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>ERD</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>ERD Documentation</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Table Schema</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Sample Queries</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Voters</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Elections</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Census to City</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Employment Type</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Ethnicity</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Income</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Population</a>
+                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Profession</a>
                     </div>
                   </li>
         </ul>
@@ -73,13 +82,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <!--<Left box--> 
         <div class="box">
           <h3 class="title">Cuyahoga County Voter Turnout vs Census Demographics</h3>
           <hr>
           <h4><b>Project Summary</b></h4>
           <p>On this project we have combined Census demogaphic data with Cuyahoga county precinct-level turnout data to determine which 
-                demographic factors are correlated with increased likelihood to vote.</p><br>
+                demographic factors are correlated with increased likelihood to vote.<br><br>Access the Git Repository directly 
+                <a href="https://github.com/kahmed1996/ETL-Project" target= "blank">
+                   here</a>.</p>
           <img src="Resources/assets/images/vote.JPG" class="vizualization rounded float-left" alt="Project Summary">
 
             <p><b><h4>Sources</h4></b>
@@ -87,14 +97,15 @@
             The sources for our dataset are as follows:<br>
                 <ul>
                     <li><a href="https://www.kaggle.com/muonneutrino/us-census-demographic-data" target= "blank">
-                        https://www.kaggle.com/muonneutrino/us-census-demographic-data</a></li>
+                        census data</a></li>
                     <li><a href="http://cuyahogaelectionaudits.com" target= "blank">
-                         http://cuyahogaelectionaudits.com</a></li>
-                    <li><a href="https://github.com/mggg/ohio-precincts" target= "blank">
-                        https://github.com/mggg/ohio-precincts</a></li>
-             </p>
+                         registered voter data</a></li>
+                    <li><a href="http://levin.urban.csuohio.edu/nodis/maps_county_tracts_and_blockgroups.html" target= "blank">
+                      city to blockgroup map</a></li>
+                </ul>
+             
 
-             <p><b><h4>Questions</h4></b>
+             <b><h4>Questions</h4></b>
 
                 <b>Example questions answered with this database:</b><br>
                     <ul>
@@ -104,7 +115,8 @@
                         <li>How does voter turnout vary between men and women in Cuyahoga county?</li>
                         <li>How does voter turnout vary between general elections with and without a presidential election?</li>
                         <li>How does voter turnout vary given a precinct's income measures?</li>
-                 </p>
+                    </ul>
+              </p>
         </div>
       </div>
       
