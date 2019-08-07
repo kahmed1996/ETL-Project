@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cuyahoga Voter Turn-out vs Census Demographics</title>
+  <title>Voter Turnout vs Census</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
@@ -36,9 +36,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="extract.html">Overview</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+              <a class="dropdown-item" href="Resources/acs_2015_census_tract_data.csv" download>Raw Census Data</a>
+              <a class="dropdown-item" href="Resources/Voter Turnout.csv" download>Raw Voter Data</a>
+              <a class="dropdown-item" href="http://levin.urban.csuohio.edu/nodis/cuyahoga2010tracts.pdf" target= "blank">Raw city-block</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -48,9 +48,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="Transform.html">Overview</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                  <a class="dropdown-item" href="Resources/Voter_and_Election_Table_Creation.html" target= "blank">Voter/Election Files</a>
+                  <a class="dropdown-item" href="Resources/censusdata_final.html" target= "blank">Census Files</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -60,9 +59,18 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item" href="Load.html">Overview</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                      <a class="dropdown-item" href="Resources/voter_turnout_census_demographics_ERD.png" target= "blank">ERD</a>
+                      <a class="dropdown-item" href="Resources/voter_turnout_census_demographics_ERD_Documentation.pdf" target= "blank">ERD Documentation</a>
+                      <a class="dropdown-item" href="Resources/table_schema.sql" download>Table Schema</a>
+                      <a class="dropdown-item" href="Resources/Queries.sql" download>Sample Queries</a>
+                      <a class="dropdown-item" href="Resources/Voters.csv" download>Voters</a>
+                      <a class="dropdown-item" href="Resources/Elections.csv" download>Elections</a>
+                      <a class="dropdown-item" href="Resources/Census_City.csv" download>Census to City</a>
+                      <a class="dropdown-item" href="Resources/Census_Employment_Type.csv" download>Employment Type</a>
+                      <a class="dropdown-item" href="Resources/Census_Ethnicity.csv" download>Ethnicity</a>
+                      <a class="dropdown-item" href="Resources/Census_Income.csv" download>Income</a>
+                      <a class="dropdown-item" href="Resources/Census_Population.csv" download>Population</a>
+                      <a class="dropdown-item" href="Resources/Census_Professions.csv" download>Profession</a>
                     </div>
                   </li>
         </ul>
@@ -76,9 +84,11 @@
         
         <div class="box">
           <h3 class="title"><u>Extract</u></h3>
+          <p><i>*Links to download all raw files are in the Extract dropdown.</i></p>
           <hr>
           <h4><b>Voter Turn-out Data</b></h4>
-          <p>Cuyahoga county turn-out data was extracted from the Cuyahoga Elections Audit webpage.  The raw file contained the following data points on voters in .csv format:<br> 
+          <p>Cuyahoga county turn-out data was extracted from the Cuyahoga Elections Audit webpage.  
+            <br><br>The raw file contained the following data points on voters in .csv format:<br> 
             <ul>
 
               <li>Voter ID (voter_id_org)</li>
@@ -98,43 +108,59 @@
           <!--<img src="Resources/assets/images/vote.JPG" class="vizualization rounded float-left" alt="Project Summary">-->
 
           <h4><b>Census Data</b></h4>
-          <p>*****KASHIFA'S CENSUS EXTRACT OVERVIEW HERE!****<br> 
+          <p>We used one dataset from the public platform Kaggle. The data here is taken from the DP03 and DP05 tables of 
+            the 2015 American Community Survey 5-year estimates. The full datasets and much more can be found at the American 
+            Factfinder website.  acs2015_census_tract_data.csv: Data for each census tract in the US, including DC and Puerto Rico.<br>
+            <br>
+            acs2015_census_tract_data.csv: Data for each census tract in the US, including DC and Puerto Rico.<br>
+            <br>
+            The raw file contained the following data points on voters in .csv format:
             <ul>
-              <LI>ANY IMPORTANT POINTS REGARDING RAW CENSUS DATA HERE</LI>
-              <!--<li>Voter ID (voter_id_org)</li>
-              <li>STATE_ID</li>
-              <li>City</li>
-              <li>Ward</li>
-              <li>Precinct (pct)</li>
-              <li>Voter Name</li>
-              <li>Status - A=active, I=inactive</li>
-              <li>Party Affiliation</li>
-              <li>Registration Dates (initial and latest)</li>
-              <li>Voter's Full Address</li>
-              <li>Voter's Birth Year</li>
-              <li>Voter's Participation - All elections, general and primary, from Feb 2006 to May 2019</li>-->
+              <li>CensusTract (Census tract ID)</li>
+              <li>State (State, DC, or Puerto Rico)</li>
+              <li>County(County or county equivalent)</li>
+              <li>TotalPop(Total population)</li>
+              <li>Men(Number of men)</li>
+              <li>Women(Number of women)</li>
+              <li>Hispanic(% of population that is Hispanic/Latino)</li>
+              <li>White(% of population that is white)</li>
+              <li>Black(% of population that is black)</li>
+              <li>Native(% of population that is Native American or Native Alaskan)</li>
+              <li>Asian(% of population that is Asian)</li>
+              <li>Pacific(% of population that is Native Hawaiian or Pacific Islander)</li>
+              <li>Citizen(Number of citizens)</li>
+              <li>Income(Median household income ($))</li>Income(Median household income ($))
+              <li>IncomeErr(Median household income error ($))</li>
+              <li>IncomePerCap(Income per capita ($))</li>
+              <li>IncomePerCapErr(Income per capita error ($))</li>
+              <li>Poverty(% under poverty level)</li>
+              <li>ChildPoverty(% of children under poverty level)</li>
+              <li>Professional(% employed in management, business, science, and arts)</li>
+              <li>Service(% employed in service jobs)</li>
+              <li>Office(% employed in sales and office jobs)</li>
+              <li>Construction(% employed in natural resources, construction, and maintenance)</li>
+              <li>Production(% employed in production, transportation, and material movement)</li>
+              <li>Drive(% commuting alone in a car, van, or truck)</li>
+              <li>Carpool(% carpooling in a car, van, or truck)</li>
+              <li>Transit(% commuting on public transportation)</li>
+              <li>Walk(% walking to work)</li>
+              <li>OtherTransp(% commuting via other means)</li>
+              <li>WorkAtHome(% working at home)</li>
+              <li>MeanCommute(Mean commute time (minutes))</li>
+              <li>Employed(Number of employed )</li>
+              <li>PrivateWork(% employed in private industry)</li>
+              <li>PublicWork(% employed in public jobs)</li>
+              <li>SelfEmployed(% self-employed)</li>
+              <li>FamilyWork(% in unpaid family work)</li>
+              <li>Unemployment(Unemployment rate (%))</li>
             </ul>
           </p><br>
 
           <h4><b>City vs Block Group Map</b></h4>
-          <p>*****NICK'S CITY TO BLOCK GROUP MAP/FILE OVERVIEW HERE!****<br> 
-            <ul>
-              <LI>ANY IMPORTANT POINTS REGARDING CITY TO BLOCK GROUP HERE</LI>
-              <!--<li>voter_id_org</li>
-              <li>STATE_ID</li>
-              <li>City</li>
-              <li>Ward</li>
-              <li>Precinct (pct)</li>
-              <li>Voter Name</li>
-              <li>Status - A=active, I=inactive</li>
-              <li>Party Affiliation</li>
-              <li>Registration Dates (initial and latest)</li>
-              <li>Voter's Full Address</li>
-              <li>Voter's Birth Year</li>
-              <li>Voter's Participation - All elections, general and primary, from Feb 2006 to May 2019</li>-->
-            </ul>
-          </p><br>
-          <p><i>*Links to download all raw .csv files are in the Extract dropdown.</i></p><br><br>
+          <p>Information on which city contained which census tracts was obtained from the Northern Ohio Data and Information
+            Service (NODIS) at Cleveland State University's College of Urban Affairs. The map shows all cities' borders in Cuyahoga county 
+            overlayed with a Census tract grid and is in PDF format. 
+          <br><br>
         </div>
       </div>
       
