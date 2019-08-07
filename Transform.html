@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Cuyahoga Voter Turn-out vs Census Demographics</title>
+  <title>Voter Turnout vs Census</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS -->
@@ -36,9 +36,9 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="extract.html">Overview</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-              <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+              <a class="dropdown-item" href="Resources/acs_2015_census_tract_data.csv" download>Raw Census Data</a>
+              <a class="dropdown-item" href="Resources/Voter Turnout.csv" download>Raw Voter Data</a>
+              <a class="dropdown-item" href="http://levin.urban.csuohio.edu/nodis/cuyahoga2010tracts.pdf" target= "blank">Raw city-block</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -48,9 +48,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="Transform.html">Overview</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                  <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                  <a class="dropdown-item" href="Resources/Voter_and_Election_Table_Creation.html" target= "blank">Voter/Election Files</a>
+                  <a class="dropdown-item" href="Resources/censusdata_final.html" target= "blank">Census Files</a>
                 </div>
               </li>
               <li class="nav-item dropdown">
@@ -60,9 +59,18 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <a class="dropdown-item" href="Load.html">Overview</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Census Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw Voter Data</a>
-                      <a class="dropdown-item" href="Resources/assets/test.csv" download>Download Raw city-block</a>
+                      <a class="dropdown-item" href="Resources/voter_turnout_census_demographics_ERD.png" target= "blank">ERD</a>
+                      <a class="dropdown-item" href="Resources/voter_turnout_census_demographics_ERD_Documentation.pdf" target= "blank">ERD Documentation</a>
+                      <a class="dropdown-item" href="Resources/table_schema.sql" download>Table Schema</a>
+                      <a class="dropdown-item" href="Resources/Queries.sql" download>Sample Queries</a>
+                      <a class="dropdown-item" href="Resources/Voters.csv" download>Voters</a>
+                      <a class="dropdown-item" href="Resources/Elections.csv" download>Elections</a>
+                      <a class="dropdown-item" href="Resources/Census_City.csv" download>Census to City</a>
+                      <a class="dropdown-item" href="Resources/Census_Employment_Type.csv" download>Employment Type</a>
+                      <a class="dropdown-item" href="Resources/Census_Ethnicity.csv" download>Ethnicity</a>
+                      <a class="dropdown-item" href="Resources/Census_Income.csv" download>Income</a>
+                      <a class="dropdown-item" href="Resources/Census_Population.csv" download>Population</a>
+                      <a class="dropdown-item" href="Resources/Census_Professions.csv" download>Profession</a>
                     </div>
                   </li>
         </ul>
@@ -76,65 +84,66 @@
         
         <div class="box">
           <h3 class="title"><u>Transform</u></h3>
+          <p><i>*Links to jupyter notebooks with our data cleaning code are in the Transform dropdown.</i></p>
           <hr>
           <h4><b>Voter Turn-out Data</b></h4>
-          <p>COLLEEN'S VOTER TURN-OUT TRANSFORMATION OVERVIEW HERE!<br> 
+          <p>The raw voter turn-out data was pulled into a Pandas dataframe and a number of columns were dropped including voter personal information
+            such as name and address, and primary election data as we felt general election data would be of more interest.  Election column blanks were then 
+            populated with an "N" for data consistency.<br>
+            <br>  
+            A voter information only dataframe was created from this cleaned data and exported to a CSV file.<br>
+            <br>
+            The voter file and columns are as follows:
+            <br> 
             <ul>
-              <LI>ANY IMPORTANT POINTS REGARDING VOTER TURNOUT TRANSFORM WORK HERE</LI>
-              <!--<li>Voter ID (voter_id_org)</li>
-              <li>STATE_ID</li>
-              <li>City</li>
-              <li>Ward</li>
-              <li>Precinct (pct)</li>
-              <li>Voter Name</li>
-              <li>Status - A=active, I=inactive</li>
-              <li>Party Affiliation</li>
-              <li>Registration Dates (initial and latest)</li>
-              <li>Voter's Full Address</li>
-              <li>Voter's Birth Year</li>
-              <li>Voter's Participation - All elections, general and primary, from Feb 2006 to May 2019</li>-->
+              <li>voters.csv:  voter_id_org, city, party, birth_date</li>
+            </ul>
+            <br>
+            It was determined that in order for the database to be most effective, a table containing a voter record for each election would be needed.
+            to accomplish this, a dataframe was created for each of the 13 general election. Each was formatted by first adding an "election" column, then iterating through 
+            and populating the specific election utilizing ".assign" Pandas attribute.  The original election column was then renamed to "voted" and the voter ID was made the index.
+            All 13 cleaned election dataframes were then put into a variable and merged together consecutively using the Pandas ".concat" attribute, sorted by voter ID, then election
+            and exported into a CSV.<br>
+            <br>
+            The elections file and columns are as follows:
+            <br>
+            <ul>
+              <li>elections.csv:  voter_id, election, voted</li> 
             </ul>
           </p><br>
-          <!--<img src="Resources/assets/images/vote.JPG" class="vizualization rounded float-left" alt="Project Summary">-->
 
           <h4><b>Census Data</b></h4>
-          <p>*****KASHIFA'S CENSUS TRANSFORM OVERVIEW HERE!****<br> 
+          <p>The raw census data was pulled into a pandas dataframe then filtered for only the data for
+              Cuyahoga county.  The columns were then renamed to more meaningful names.  Mini dataframes were then created with 
+              relative columns, all containing the census tract, and exported to .csv files to be loaded into relevent tables.<br>
+              <br>
+              The files and their relative columns are as follows:<br>
+              <br> 
             <ul>
-              <LI>ANY IMPORTANT POINTS REGARDING TRANSFORMED CENSUS DATA HERE</LI>
-              <!--<li>Voter ID (voter_id_org)</li>
-              <li>STATE_ID</li>
-              <li>City</li>
-              <li>Ward</li>
-              <li>Precinct (pct)</li>
-              <li>Voter Name</li>
-              <li>Status - A=active, I=inactive</li>
-              <li>Party Affiliation</li>
-              <li>Registration Dates (initial and latest)</li>
-              <li>Voter's Full Address</li>
-              <li>Voter's Birth Year</li>
-              <li>Voter's Participation - All elections, general and primary, from Feb 2006 to May 2019</li>-->
+              <li>census_population.csv:  CensusTract, Total_Population</li>
+              <li>census_gender.csv:  CensusTract, Men, Women</li>
+              <li>census_ethnicity.csv:  CensusTract, Total_Population, Hispanic, White, Black, Native, Asian, Pacific</li>
+              <li>census_income.csv:  CensusTract, Meadian_Houshold_Income, Income_Per_Capita, Under_Pov_Level_Perentage</li>
+              <li>census_employment_type.csv:  CesnsusTract, Total_Employed, PrivateWork, PublicWork, SelfEmployed</li>
+              <li>census_professions.csv:  CensusTract, Total_Employed, Professional_Workers_Percentage,
+                Service_Workers_Percentage, Office_Workers_Percentage, Construction_Workers_Percentage, Production_Workers_Percentage</li>
             </ul>
           </p><br>
 
-          <h4><b>City vs Block Group Map</b></h4>
-          <p>*****NICK'S CITY TO BLOCK GROUP MAP/FILE TRANSFORM OVERVIEW HERE!****<br> 
+          <h4><b>City vs Census Tract Map</b></h4>
+          <p>The map PDF was converted to CSV by manually typing the information into a working Excel spreadsheet, formating the data, then saving as a .csv.  The census tracts in the census data 
+            are the tract numbers on the map preceded by the five-digit cuyahoga county code (39035).  This code was added to each record 
+            in the excel working file, then concatenated with the tract number to create the correct census tract/s per city.  Tract numbers are all unique
+            and cities may contain multiple tracts and are thus listed more than once in some instances.  each tract is a unique row with a corresponding
+            city.<br>
+            <br>
+            The file and columns are as follows:
+            <br>
             <ul>
-              <LI>ANY IMPORTANT POINTS REGARDING CITY TO BLOCK GROUP TRANSFORM HERE</LI>
-              <!--<li>voter_id_org</li>
-              <li>STATE_ID</li>
-              <li>City</li>
-              <li>Ward</li>
-              <li>Precinct (pct)</li>
-              <li>Voter Name</li>
-              <li>Status - A=active, I=inactive</li>
-              <li>Party Affiliation</li>
-              <li>Registration Dates (initial and latest)</li>
-              <li>Voter's Full Address</li>
-              <li>Voter's Birth Year</li>
-              <li>Voter's Participation - All elections, general and primary, from Feb 2006 to May 2019</li>-->
-            </ul>
+              <li>Census_City.csv:  CensusTract, City</li>
+            </ul>  
           </p><br>
-          <p><i>*Links to jupyter notebooks with our data cleaning code and steps are in the Transform dropdown.</i></p><br><br>
+          <br><br>
         </div>
       </div>
       
